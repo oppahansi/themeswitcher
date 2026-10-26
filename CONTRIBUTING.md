@@ -47,6 +47,12 @@ Also say whether the File Transformation plugin is installed, and include errors
 | `scripts/package.sh` | Builds and zips one Jellyfin version |
 | `scripts/update-manifest.py` | Updates `manifest.json`, the Jellyfin plugin repository file |
 
+## Plugin page notes
+
+- The settings page is registered with `EnableInMainMenu`, which puts it in the dashboard sidebar. Its `Name` (`ThemeSwitcher`) is the page id, `DisplayName` the label.
+- jellyfin-web 12.x ignores `data-require` on plugin pages, and `emby-textarea` is only registered once one of its own editors has loaded, so the page uses a plain `<textarea>`.
+- A manually installed plugin shows "An error occurred while getting the plugin details from the repository" on its details page, because it isn't in any plugin repository. It goes away when installed from the manifest.
+
 ## Adding a theme
 
 Create `Jellyfin.Plugin.ThemeSwitcher/Web/themes/<id>.css` (lowercase, dashes) and rebuild. It is embedded and shows up in the settings automatically:

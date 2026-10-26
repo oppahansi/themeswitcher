@@ -15,7 +15,7 @@ A Jellyfin plugin that re-skins the web client. Pick a theme in the dashboard in
 - **Custom CSS** appended after the theme for small tweaks.
 - Applies to everyone on the server, including the login page.
 
-Settings: **Dashboard → Plugins → Theme Switcher**. Reload the web client (Ctrl+F5) after saving.
+Settings: **Theme Switcher** in the dashboard sidebar (under Plugins), or Dashboard → Plugins → Theme Switcher → Settings. Reload the web client (Ctrl+F5) after saving.
 
 Themes are plain CSS files that set a handful of color variables; adding one means dropping a file into `Web/themes`, see [CONTRIBUTING.md](CONTRIBUTING.md). Theme ideas and the brief used to design them are in [docs/designer-prompts.md](docs/designer-prompts.md).
 

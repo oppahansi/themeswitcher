@@ -5,7 +5,28 @@
     <title>Theme Switcher</title>
 </head>
 <body>
-<div id="themeSwitcherConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-textarea">
+<div id="themeSwitcherConfigPage" data-role="page" class="page type-interior pluginConfigurationPage">
+    <style>
+        /* emby-textarea only registers when one of jellyfin-web's own editors has loaded it, so this is a plain textarea. */
+        #themeSwitcherConfigPage .ts-textarea {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 10em;
+            padding: 0.5em 0.6em;
+            resize: vertical;
+            font-size: 100%;
+            color: inherit;
+            background: var(--jf-palette-FilledInput-bg, rgba(255, 255, 255, 0.09));
+            border: 0.07em solid var(--jf-palette-FilledInput-borderColor, rgba(255, 255, 255, 0.09));
+            border-radius: var(--jf-card-borderRadius, 0.2em);
+            outline: none;
+        }
+
+        #themeSwitcherConfigPage .ts-textarea:focus {
+            border-color: var(--jf-palette-secondary-main, #00a4dc);
+        }
+    </style>
     <div data-role="content">
         <div class="content-primary">
             <form id="themeSwitcherForm">
@@ -23,14 +44,13 @@
                 <div id="themePreview" style="display:flex;gap:.5em;margin:1em 0;"></div>
 
                 <div class="inputContainer">
-                    <label class="inputLabel inputLabelUnfocused" for="accentColor">Accent color override (#rrggbb)</label>
-                    <input is="emby-input" type="text" id="accentColor" placeholder="#00a4dc" maxlength="7" />
+                    <input is="emby-input" type="text" id="accentColor" label="Accent color override (#rrggbb)" placeholder="#00a4dc" maxlength="7" />
                     <div class="fieldDescription">Optional. Leave empty to use the theme's own accent. Has no effect on "Jellyfin default".</div>
                 </div>
 
                 <div class="inputContainer">
                     <label class="inputLabel inputLabelUnfocused" for="customCss">Custom CSS</label>
-                    <textarea is="emby-textarea" id="customCss" rows="10" class="emby-textarea" style="font-family:monospace;"></textarea>
+                    <textarea id="customCss" class="textarea-mono ts-textarea" spellcheck="false"></textarea>
                     <div class="fieldDescription">Appended after the theme, so it wins over it.</div>
                 </div>
 

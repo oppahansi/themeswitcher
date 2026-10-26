@@ -47,8 +47,12 @@ public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
         yield return new PluginPageInfo
         {
-            Name = Name,
-            EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html"
+            Name = "ThemeSwitcher",
+            DisplayName = "Theme Switcher",
+            EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html",
+            EnableInMainMenu = true,
+            MenuSection = "server",
+            MenuIcon = "palette"
         };
     }
 
