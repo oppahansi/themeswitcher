@@ -53,6 +53,11 @@ GET /ThemeSwitcher/theme.css
 The generated stylesheet. No authentication, because it loads before login.
 
 ```
+GET /ThemeSwitcher/fonts/{file}.woff2
+```
+Bundled fonts. No authentication.
+
+```
 GET /ThemeSwitcher/Themes
 ```
 The available themes (for the settings page). Needs a user session.
@@ -68,3 +73,5 @@ dotnet build Jellyfin.Plugin.ThemeSwitcher -c Release -p:JellyfinVersion=12.3.0
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+The bundled [Quicksand](https://github.com/andrew-paglinawan/QuicksandFamily) font is licensed under the SIL Open Font License 1.1, see [`Web/fonts/Quicksand-OFL.txt`](Jellyfin.Plugin.ThemeSwitcher/Web/fonts/Quicksand-OFL.txt).

@@ -69,6 +69,20 @@ Create `Jellyfin.Plugin.ThemeSwitcher/Web/themes/<id>.css` (lowercase, dashes) a
 }
 ```
 
+Optional variables for effects (all off unless set):
+
+```css
+    --ts-font: "Quicksand", "Noto Sans", sans-serif; /* "Quicksand" is bundled, see below */
+    --ts-backdrop-blur: 30px;  /* blur of the full-page item backdrop */
+    --ts-backdrop-scale: 1.1;  /* zoom that hides the blurred edges */
+    --ts-backdrop-dim: 0.9;    /* dimming layer above the backdrop, higher is darker (default 0.86) */
+    --ts-glass: rgba(0, 0, 0, 0.35); /* dialogs, drawer, toasts, bottom bar */
+    --ts-glass-blur: 15px;
+    --ts-header-blur: 8px;     /* with --ts-header: transparent */
+```
+
+Bundled fonts live in `Web/fonts/` and are served from `/ThemeSwitcher/fonts/`. Only Quicksand (SIL OFL 1.1, license next to it) so far. To add one, drop the `.woff2` files there, add `@font-face` rules to `Web/base.css` and keep the license file.
+
 `@name` and `@scheme` (`dark` or `light`) are required. A theme may add its own rules below the variables (they load after `base.css`), but prefer variables so the accent override keeps working. `Web/base.css` maps the variables onto jellyfin-web's own `--jf-palette-*` theme variables (jellyfin-web 12.x) and patches the few places that hard-code colors. It was checked against jellyfin-web v12.3; if a new version looks off, compare with `src/themes/_base/_theme.scss` there.
 
 ## Pull requests

@@ -105,3 +105,30 @@ Theme 9: "Glacier". LIGHT. Cool white and very pale blue-grey backgrounds, crisp
 ```
 Theme 10: "Ember". Dark. Charcoal backgrounds with a slight warm cast, surfaces a step lighter, off-white text, and a glowing orange-red accent like embers. Bold, high-contrast, sharp corners (radius 0 to 0.1em). Font: system sans-serif.
 ```
+
+### 11. Kaleidochromic (dark, glass, recreation of CTalvio's skin)
+Reference: https://github.com/CTalvio/Kaleidochromic/tree/main/screenshots (especially 1.png and 6.png). Quicksand is bundled with the plugin, so use it.
+```
+Theme 11: "Kaleidochromic" (a recreation of CTalvio's Jellyfin skin of the same name; attach the reference screenshots from the link above, especially 1.png and 6.png). Dark. Recreate its look as closely as you can in our token format and tell me anything the tokens can't express.
+
+What defines the look, in order of importance:
+1. The page is nearly black and the artwork of the current item is shown full-screen behind everything, heavily blurred and dimmed, so the page colors shift with the content. Chrome never has an opaque panel: the top bar is fully transparent over the blurred backdrop, white icons, centered "Home / Favorites" tabs (active white, inactive dimmed).
+2. Glass surfaces: side drawer, dialogs, toasts and the bottom player bar are very dark translucent black (about 35% opacity) with a strong background blur (about 15px). Cards in rows have NO background panel: rounded artwork, centered title and a smaller dimmed subtitle below.
+3. One desaturated periwinkle accent, roughly #6279cd. Used for the play button (a soft rounded square tinted with the accent at low opacity, play icon in the accent), favorite heart, check mark, count badges on posters, the focused card outline and links. Never a big solid fill.
+4. Rounded everywhere, about 12px: posters, buttons, dropdowns, dialogs, library tiles. "My Media" tiles are dark translucent rounded rectangles with icon and label.
+5. Typography: Quicksand (weights 300 to 700) everywhere. Section titles light weight and a bit larger than body text, with a small chevron after them. Body copy compact (about 90%).
+6. Item page: unframed rounded poster on the left, title/metadata on the right, a label/value table (dimmed labels, brighter values), compact translucent pill dropdowns, a row of small SQUARE rounded cast photos with the role dimmed underneath.
+7. Episode progress is a thin bar on the thumbnail's bottom edge, accent on a translucent track.
+
+Deliver everything from the shared brief (mockups of screens 1, 2 and 3, token table, contrast ratios, CSS block) with these tokens: bg about #080808; header: transparent (--ts-header: transparent); surface: the dark glass tone as a solid color; text white; text-muted about 70% white as a solid hex; border about 12% white as a solid hex; accent #6279cd; accent-text chosen for contrast; radius 0.75em; font "Quicksand", "Noto Sans", sans-serif.
+
+In the CSS block also set these OPTIONAL variables, with the values you recommend (I implement the effects, you only choose the numbers):
+    --ts-backdrop-blur: <px>;      /* blur of the full-page backdrop */
+    --ts-backdrop-scale: <number>; /* zoom that hides blurred edges, usually 1.05 to 1.15 */
+    --ts-backdrop-dim: <0-1>;      /* dimming layer above the backdrop, higher is darker, stock is 0.86 */
+    --ts-glass: rgba(...);         /* background of dialogs, drawer, toasts, bottom bar */
+    --ts-glass-blur: <px>;
+    --ts-header-blur: <px>;        /* blur behind the transparent top bar, 0px for none */
+Then list anything about the look that these variables cannot reproduce.
+```
+

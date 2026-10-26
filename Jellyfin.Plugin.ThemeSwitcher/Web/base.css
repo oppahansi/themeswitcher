@@ -8,6 +8,25 @@
  * The *Channel variables (space separated "r g b") are appended by the plugin, see ThemeCatalog.Build.
  */
 
+/* Bundled fonts (SIL OFL, see Web/fonts). Served by the plugin from ../fonts/, relative to /ThemeSwitcher/theme.css. */
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("fonts/quicksand-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("fonts/quicksand-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 html[data-theme] {
     color-scheme: var(--ts-scheme, dark);
 
@@ -38,9 +57,59 @@ html[data-theme] {
     --jf-card-borderRadius: var(--ts-radius, 0.2em);
 }
 
-html,
-body {
-    font-family: var(--ts-font, inherit);
+/*
+ * Font. Both the legacy elements and the MUI components set their own font-family, so inheriting from <html> isn't
+ * enough. Icon fonts must keep theirs, hence the exclusion.
+ */
+body,
+body :not(.material-icons):not(.textarea-mono) {
+    font-family: var(--ts-font, "Noto Sans", sans-serif) !important;
+}
+
+/*
+ * Optional theme variables for backdrop and glass effects (all default to "off"):
+ *   --ts-backdrop-blur   blur radius of the full-page item backdrop, e.g. 30px
+ *   --ts-backdrop-scale  zoom that hides the blurred edges, e.g. 1.1
+ *   --ts-backdrop-dim    opacity of the dimming layer above the backdrop (0 to 1, higher is darker), default 0.86
+ *   --ts-glass           background of floating surfaces (dialogs, drawer, toasts, bottom bar), may be translucent
+ *   --ts-glass-blur      blur behind those surfaces, e.g. 15px
+ *   --ts-header-blur     blur behind the top bar (set --ts-header to transparent or translucent)
+ */
+.backdropImage {
+    filter: blur(var(--ts-backdrop-blur, 0px));
+    transform: scale(var(--ts-backdrop-scale, 1));
+}
+
+.backgroundContainer.withBackdrop {
+    opacity: var(--ts-backdrop-dim, 0.86);
+}
+
+/* jellyfin-web forces backdrop-filter: none on the translucent header, so this needs the extra specificity */
+html .skinHeader,
+html .skinHeader.semiTransparent {
+    backdrop-filter: blur(var(--ts-header-blur, 0px)) !important;
+}
+
+.dialog,
+.formDialog,
+.actionSheetContent,
+.mainDrawer,
+.toast,
+.appfooter {
+    background-color: var(--ts-glass, var(--ts-surface)) !important;
+    backdrop-filter: blur(var(--ts-glass-blur, 0px));
+}
+
+/* Without backdrop-filter a translucent surface would be unreadable, so fall back to the solid one */
+@supports not (backdrop-filter: blur(1px)) {
+    .dialog,
+    .formDialog,
+    .actionSheetContent,
+    .mainDrawer,
+    .toast,
+    .appfooter {
+        background-color: var(--ts-surface) !important;
+    }
 }
 
 /* Surfaces the web client colors with a compiled-in value instead of a variable */
@@ -65,7 +134,6 @@ body {
 .dialog,
 .formDialog,
 .actionSheetContent {
-    background-color: var(--ts-surface) !important;
     color: var(--ts-text);
     border-radius: var(--ts-radius, 0.2em);
 }

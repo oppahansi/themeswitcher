@@ -43,6 +43,34 @@ public class ThemeSwitcherController : ControllerBase
     }
 
     /// <summary>
+    /// Gets a bundled font file. Anonymous, because the login page uses it too.
+    /// </summary>
+    /// <param name="file">The file name, for example quicksand-latin.woff2.</param>
+    /// <returns>The font.</returns>
+    [HttpGet("fonts/{file}")]
+    [AllowAnonymous]
+    [Produces("font/woff2")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult GetFont([FromRoute] string file)
+    {
+        // Only .woff2 files embedded under Web/fonts can be reached; the name is looked up, never used as a path.
+        if (!file.EndsWith(".woff2", StringComparison.Ordinal))
+        {
+            return NotFound();
+        }
+
+        var stream = GetType().Assembly.GetManifestResourceStream(typeof(Plugin).Namespace + ".Web.fonts." + file);
+        if (stream is null)
+        {
+            return NotFound();
+        }
+
+        Response.Headers.CacheControl = "public, max-age=604800";
+        return File(stream, "font/woff2");
+    }
+
+    /// <summary>
     /// Gets the available themes for the settings page.
     /// </summary>
     /// <returns>The themes.</returns>
