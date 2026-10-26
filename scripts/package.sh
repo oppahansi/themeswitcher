@@ -36,7 +36,7 @@ cat > "$STAGE/meta.json" <<JSON
   "changelog": "See https://github.com/oppahansi/themeswitcher/blob/main/CHANGELOG.md",
   "description": "Changes the look of the Jellyfin web UI with selectable themes, an accent color override and custom CSS.",
   "guid": "4fdfbe7d-28a8-429c-acc1-1a471dde3a1f",
-  "name": "ThemeSwitcher",
+  "name": "Theme Switcher",
   "overview": "Re-skin the Jellyfin web UI from the dashboard",
   "owner": "oppahansi",
   "targetAbi": "$LINE.0.0",

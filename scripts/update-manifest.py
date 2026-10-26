@@ -19,7 +19,7 @@ MANIFEST = ROOT / "manifest.json"
 
 PLUGIN = {
     "guid": "4fdfbe7d-28a8-429c-acc1-1a471dde3a1f",
-    "name": "ThemeSwitcher",
+    "name": "Theme Switcher",
     "description": "Changes the look of the Jellyfin web UI with selectable themes, an accent color override and custom CSS.",
     "overview": "Re-skin the Jellyfin web UI from the dashboard",
     "owner": "oppahansi",
