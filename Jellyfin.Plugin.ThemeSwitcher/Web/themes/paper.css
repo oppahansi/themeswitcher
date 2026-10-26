@@ -1,0 +1,14 @@
+/* @name Paper (light) */
+/* @scheme light */
+:root {
+    color-scheme: light;
+    --ts-bg: #f4f4f0;
+    --ts-header: #ffffff;
+    --ts-surface: #ffffff;
+    --ts-text: #1f2328;
+    --ts-text-muted: #59636e;
+    --ts-border: #d0d7de;
+    --ts-accent: #0969da;
+    --ts-accent-text: #ffffff;
+    --ts-radius: 0.4em;
+}

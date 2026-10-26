@@ -1,0 +1,14 @@
+/* @name Midnight (OLED black) */
+/* @scheme dark */
+:root {
+    color-scheme: dark;
+    --ts-bg: #000000;
+    --ts-header: #0a0a0a;
+    --ts-surface: #151515;
+    --ts-text: #ececec;
+    --ts-text-muted: #9a9a9a;
+    --ts-border: #2a2a2a;
+    --ts-accent: #00a4dc;
+    --ts-accent-text: #000000;
+    --ts-radius: 0.4em;
+}

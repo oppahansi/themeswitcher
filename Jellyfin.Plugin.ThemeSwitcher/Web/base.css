@@ -1,0 +1,177 @@
+/* Shared rules. A theme file only sets the --ts-* variables (and may add its own rules after this). */
+
+html,
+body {
+    font-family: var(--ts-font, inherit);
+}
+
+html,
+body,
+.backgroundContainer,
+.mainAnimatedPage {
+    background-color: var(--ts-bg) !important;
+    color: var(--ts-text);
+}
+
+/* Top bar, side drawer, bottom player bar */
+.skinHeader,
+.skinHeader.semiTransparent,
+.mainDrawer,
+.nowPlayingBar,
+.appfooter,
+.libraryPage .pageTabsContainer {
+    background-color: var(--ts-header) !important;
+    color: var(--ts-text);
+    border-color: var(--ts-border);
+}
+
+/* Text */
+.sectionTitle,
+.cardText,
+.listItemBodyText,
+.itemName,
+.detailSectionHeader,
+h1, h2, h3, h4, h5 {
+    color: var(--ts-text) !important;
+}
+
+.cardText-secondary,
+.secondary,
+.listItemBodyText-secondary,
+.fieldDescription,
+.mediaInfoItem,
+.emby-tab-button,
+.navMenuOption {
+    color: var(--ts-text-muted) !important;
+}
+
+a,
+.button-link {
+    color: var(--ts-accent);
+}
+
+/* Cards, lists, dialogs, menus */
+.cardBox,
+.cardScalable,
+.cardPadder,
+.listItem-border,
+.paperList,
+.formDialog,
+.dialog,
+.actionSheetContent,
+.actionSheetMenuItem,
+.detailPagePrimaryContainer,
+.MuiPaper-root,
+.MuiDrawer-paper {
+    background-color: var(--ts-surface) !important;
+    color: var(--ts-text) !important;
+}
+
+.cardImageContainer,
+.cardBox,
+.formDialog,
+.dialog,
+.actionSheetContent,
+.emby-input,
+.emby-select,
+.emby-textarea,
+.emby-button.raised {
+    border-radius: var(--ts-radius, 0.2em);
+}
+
+.actionSheetMenuItem:hover,
+.listItem:hover,
+.navMenuOption:hover,
+.MuiListItemButton-root:hover {
+    background-color: color-mix(in srgb, var(--ts-accent) 18%, var(--ts-surface)) !important;
+}
+
+.navMenuOption-selected,
+.MuiListItemButton-root.Mui-selected {
+    background-color: color-mix(in srgb, var(--ts-accent) 28%, var(--ts-header)) !important;
+    color: var(--ts-text) !important;
+}
+
+/* Inputs */
+.emby-input,
+.emby-textarea,
+.emby-select,
+.emby-select-withcolor,
+.MuiInputBase-root {
+    background-color: var(--ts-surface) !important;
+    color: var(--ts-text) !important;
+    border-color: var(--ts-border) !important;
+}
+
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select:focus {
+    border-color: var(--ts-accent) !important;
+}
+
+.inputLabel,
+.selectLabel,
+.textareaLabel {
+    color: var(--ts-text-muted) !important;
+}
+
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused {
+    color: var(--ts-accent) !important;
+}
+
+/* Accent: primary buttons, progress, tabs, toggles, checkboxes */
+.button-submit,
+.emby-button.button-submit,
+.raised.button-submit,
+.MuiButton-containedPrimary {
+    background-color: var(--ts-accent) !important;
+    color: var(--ts-accent-text, #fff) !important;
+}
+
+.itemProgressBarForeground,
+.mdl-slider-fill,
+.mdl-slider::-webkit-slider-thumb,
+.mdl-slider::-moz-range-thumb,
+.mdl-switch.is-checked .mdl-switch__thumb,
+.emby-checkbox:checked + span + .checkboxOutline,
+.MuiLinearProgress-bar {
+    background-color: var(--ts-accent) !important;
+}
+
+.emby-tab-button-active,
+.emby-tab-button.emby-button-foreground.emby-tab-button-active {
+    color: var(--ts-accent) !important;
+    border-bottom-color: var(--ts-accent) !important;
+}
+
+.mdl-switch.is-checked .mdl-switch__track {
+    background-color: color-mix(in srgb, var(--ts-accent) 50%, transparent) !important;
+}
+
+.emby-checkbox:checked + span + .checkboxOutline {
+    border-color: var(--ts-accent) !important;
+}
+
+.paper-icon-button-light:hover,
+.paper-icon-button-light:focus {
+    color: var(--ts-accent) !important;
+}
+
+/* Dividers and outlines */
+.listItem-border,
+.formDialogHeader,
+.formDialogFooter,
+hr {
+    border-color: var(--ts-border) !important;
+}
+
+* {
+    scrollbar-color: var(--ts-border) var(--ts-bg);
+}
+
+::selection {
+    background-color: var(--ts-accent);
+    color: var(--ts-accent-text, #fff);
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Theme Switcher</title>
+</head>
+<body>
+<div id="themeSwitcherConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-textarea">
+    <div data-role="content">
+        <div class="content-primary">
+            <form id="themeSwitcherForm">
+                <div class="verticalSection">
+                    <h2 class="sectionTitle">Theme Switcher</h2>
+                    <p>Changes the colors of the web client for everyone on this server. Reload the web client (Ctrl+F5) after saving.</p>
+                </div>
+
+                <div class="selectContainer">
+                    <label class="selectLabel" for="themeSelect">Theme</label>
+                    <select is="emby-select" id="themeSelect" class="emby-select-withcolor emby-select"></select>
+                    <div class="fieldDescription">"Jellyfin default" leaves the stock look alone. Custom CSS below still applies.</div>
+                </div>
+
+                <div id="themePreview" style="display:flex;gap:.5em;margin:1em 0;"></div>
+
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="accentColor">Accent color override (#rrggbb)</label>
+                    <input is="emby-input" type="text" id="accentColor" placeholder="#00a4dc" maxlength="7" />
+                    <div class="fieldDescription">Optional. Leave empty to use the theme's own accent. Has no effect on "Jellyfin default".</div>
+                </div>
+
+                <div class="inputContainer">
+                    <label class="inputLabel inputLabelUnfocused" for="customCss">Custom CSS</label>
+                    <textarea is="emby-textarea" id="customCss" rows="10" class="emby-textarea" style="font-family:monospace;"></textarea>
+                    <div class="fieldDescription">Appended after the theme, so it wins over it.</div>
+                </div>
+
+                <div>
+                    <button is="emby-button" type="submit" class="raised button-submit block"><span>Save</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            var pluginId = '4fdfbe7d-28a8-429c-acc1-1a471dde3a1f';
+            var page = document.querySelector('#themeSwitcherConfigPage');
+            var hex = /^#[0-9a-fA-F]{6}$/;
+            var themes = [];
+
+            function renderPreview() {
+                var theme = themes.find(function (t) { return t.Id === page.querySelector('#themeSelect').value; });
+                var box = page.querySelector('#themePreview');
+                box.innerHTML = '';
+                if (!theme) { return; }
+                var accentInput = page.querySelector('#accentColor').value.trim();
+                [theme.Background, theme.Surface, theme.Text, hex.test(accentInput) ? accentInput : theme.Accent].forEach(function (color) {
+                    var swatch = document.createElement('div');
+                    swatch.style.cssText = 'width:3em;height:3em;border-radius:.4em;border:1px solid #888;background:' + color;
+                    box.appendChild(swatch);
+                });
+            }
+
+            page.addEventListener('pageshow', function () {
+                Dashboard.showLoadingMsg();
+                Promise.all([
+                    ApiClient.getJSON(ApiClient.getUrl('ThemeSwitcher/Themes')),
+                    ApiClient.getPluginConfiguration(pluginId)
+                ]).then(function (results) {
+                    themes = results[0];
+                    var config = results[1];
+                    var select = page.querySelector('#themeSelect');
+                    select.innerHTML = '';
+                    themes.forEach(function (t) {
+                        var option = document.createElement('option');
+                        option.value = t.Id;
+                        option.textContent = t.Name;
+                        select.appendChild(option);
+                    });
+                    select.value = config.Theme || 'default';
+                    page.querySelector('#accentColor').value = config.AccentColor || '';
+                    page.querySelector('#customCss').value = config.CustomCss || '';
+                    renderPreview();
+                    Dashboard.hideLoadingMsg();
+                });
+            });
+
+            page.querySelector('#themeSelect').addEventListener('change', renderPreview);
+            page.querySelector('#accentColor').addEventListener('input', renderPreview);
+
+            page.querySelector('#themeSwitcherForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var accent = page.querySelector('#accentColor').value.trim();
+                if (accent && !hex.test(accent)) {
+                    Dashboard.alert('Accent color must look like #1a2b3c');
+                    return;
+                }
+                Dashboard.showLoadingMsg();
+                ApiClient.getPluginConfiguration(pluginId).then(function (config) {
+                    config.Theme = page.querySelector('#themeSelect').value;
+                    config.AccentColor = accent;
+                    config.CustomCss = page.querySelector('#customCss').value;
+                    ApiClient.updatePluginConfiguration(pluginId, config).then(Dashboard.processPluginConfigurationUpdateResult);
+                });
+            });
+        })();
+    </script>
+</div>
+</body>
+</html>
