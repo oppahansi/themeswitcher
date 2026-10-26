@@ -8,7 +8,7 @@ How to use: paste the **shared brief** once at the start of a Claude Designer se
 I'm designing color themes for the Jellyfin media server web UI (a Netflix/Plex-style app for movies, TV and music). I need a theme as a small set of design tokens plus mockups that show they work.
 
 Screens the theme must cover:
-1. Home: top bar with logo/search/user icon, side drawer, horizontal rows of poster cards (2:3 art, title and year below), a "Continue Watching" row of 16:9 cards with a thin progress bar at the bottom.
+1. Home: top bar with logo, Home/Favorites tabs, search and user icon (no sidebar on desktop), horizontal rows of poster cards (2:3 art, title and year below), a "Continue Watching" row of 16:9 cards with a thin progress bar at the bottom.
 2. Item detail page: large backdrop image, title, metadata chips, primary Play button, secondary icon buttons, synopsis, cast row, episode list.
 3. Login page and a settings form: text inputs, dropdown, checkbox, toggle switch, primary and secondary buttons, a modal dialog and a context menu.
 4. Bottom now-playing bar with a seek slider.
@@ -19,7 +19,7 @@ Deliver:
 A. Mockups of screens 1, 2 and 3 in this theme.
 B. A token table. Every token is a single hex color (#rrggbb), except radius and font:
    - bg: page background
-   - header: top bar, side drawer, now-playing bar (usually a step away from bg)
+   - header: top bar, drawer (admin dashboard and small screens only), now-playing bar (usually a step away from bg)
    - surface: cards, dialogs, inputs, menus (a step away from bg and header)
    - text: primary text
    - text-muted: secondary text (dates, descriptions, labels)
