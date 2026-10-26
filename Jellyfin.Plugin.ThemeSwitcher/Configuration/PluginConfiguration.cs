@@ -18,6 +18,11 @@ public class PluginConfiguration : BasePluginConfiguration
     public string AccentColor { get; set; } = string.Empty;
 
     /// <summary>
+    /// Gets or sets a value indicating whether pages without a backdrop of their own get a random one from the library.
+    /// </summary>
+    public bool RandomBackground { get; set; }
+
+    /// <summary>
     /// Gets or sets CSS appended after the theme, for small tweaks.
     /// </summary>
     public string CustomCss { get; set; } = string.Empty;

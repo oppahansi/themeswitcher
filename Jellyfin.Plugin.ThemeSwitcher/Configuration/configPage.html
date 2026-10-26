@@ -43,6 +43,14 @@
 
                 <div id="themePreview" style="display:flex;gap:.5em;margin:1em 0;"></div>
 
+                <div class="checkboxContainer checkboxContainer-withDescription">
+                    <label>
+                        <input type="checkbox" id="randomBackground" style="accent-color: var(--jf-palette-primary-main, #00a4dc);" />
+                        <span>Random blurred background on every page</span>
+                    </label>
+                    <div class="fieldDescription">Pages without a backdrop of their own (home, libraries, settings) get a random one from your library, picked again on every page change and reload. Item pages keep their own artwork. The blur and dimming come from the theme. Works best with Kaleidochromic.</div>
+                </div>
+
                 <div class="inputContainer">
                     <input is="emby-input" type="text" id="accentColor" label="Accent color override (#rrggbb)" placeholder="#00a4dc" maxlength="7" />
                     <div class="fieldDescription">Optional. Leave empty to use the theme's own accent. Has no effect on "Jellyfin default".</div>
@@ -99,6 +107,7 @@
                     });
                     select.value = config.Theme || 'default';
                     page.querySelector('#accentColor').value = config.AccentColor || '';
+                    page.querySelector('#randomBackground').checked = !!config.RandomBackground;
                     page.querySelector('#customCss').value = config.CustomCss || '';
                     renderPreview();
                     Dashboard.hideLoadingMsg();
@@ -119,6 +128,7 @@
                 ApiClient.getPluginConfiguration(pluginId).then(function (config) {
                     config.Theme = page.querySelector('#themeSelect').value;
                     config.AccentColor = accent;
+                    config.RandomBackground = page.querySelector('#randomBackground').checked;
                     config.CustomCss = page.querySelector('#customCss').value;
                     ApiClient.updatePluginConfiguration(pluginId, config).then(Dashboard.processPluginConfigurationUpdateResult);
                 });

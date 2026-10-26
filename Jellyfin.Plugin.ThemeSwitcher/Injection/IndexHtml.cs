@@ -12,7 +12,7 @@ public static class IndexHtml
     private const string FileName = "index.html";
 
     private static readonly Regex StyleTag = new(
-        @"<link plugin=""ThemeSwitcher""[^>]*>\s*",
+        @"<(link|script) plugin=""ThemeSwitcher""[^>]*>(</script>)?\s*",
         RegexOptions.Compiled);
 
     /// <summary>
@@ -29,7 +29,11 @@ public static class IndexHtml
         var tag = $"<link plugin=\"ThemeSwitcher\" rel=\"stylesheet\" href=\"../ThemeSwitcher/theme.css?v={version}\">";
 
         var headEnd = html.IndexOf("</head>", StringComparison.OrdinalIgnoreCase);
-        return headEnd < 0 ? tag + html : html.Insert(headEnd, tag);
+        html = headEnd < 0 ? tag + html : html.Insert(headEnd, tag);
+
+        var script = $"<script plugin=\"ThemeSwitcher\" defer src=\"../ThemeSwitcher/client.js?v={version}\"></script>";
+        var bodyEnd = html.LastIndexOf("</body>", StringComparison.OrdinalIgnoreCase);
+        return bodyEnd < 0 ? html + script : html.Insert(bodyEnd, script);
     }
 
     /// <summary>

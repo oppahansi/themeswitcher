@@ -223,3 +223,42 @@ html * {
     background-color: var(--ts-accent);
     color: var(--ts-accent-text, #fff);
 }
+
+/*
+ * Random backdrop layer for pages without a backdrop of their own (see client.js). It is hidden while jellyfin-web
+ * shows one, e.g. on item pages. The dim level and blur come from the same variables as the regular backdrop.
+ */
+#tsRandomBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    contain: layout style size;
+}
+
+#tsRandomBackdrop > div {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    filter: blur(var(--ts-backdrop-blur, 20px));
+    transform: scale(var(--ts-backdrop-scale, 1.1));
+}
+
+#tsRandomBackdrop > div.on {
+    opacity: 1;
+}
+
+html:not(.ts-random-bg) #tsRandomBackdrop,
+html:has(.backgroundContainer.withBackdrop) #tsRandomBackdrop {
+    display: none;
+}
+
+html.ts-random-bg .backgroundContainer:not(.withBackdrop) {
+    opacity: var(--ts-backdrop-dim, 0.75) !important;
+}

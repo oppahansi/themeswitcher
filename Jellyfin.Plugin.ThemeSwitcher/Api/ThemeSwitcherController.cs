@@ -34,12 +34,32 @@ public class ThemeSwitcherController : ControllerBase
             return NotFound();
         }
 
-        var bytes = Encoding.UTF8.GetBytes(ThemeCatalog.Build(config.Theme, config.AccentColor, config.CustomCss, ReadBaseCss()));
+        var bytes = Encoding.UTF8.GetBytes(ThemeCatalog.Build(config.Theme, config.AccentColor, config.CustomCss, ReadResource("base.css"), config.RandomBackground));
 
         // The <link> in index.html is fixed, so revalidate every time and let the ETag answer unchanged settings with a 304.
         Response.Headers.CacheControl = "no-cache";
         var etag = new EntityTagHeaderValue("\"" + Convert.ToHexString(SHA256.HashData(bytes))[..16] + "\"");
         return File(bytes, "text/css; charset=utf-8", lastModified: null, entityTag: etag);
+    }
+
+    /// <summary>
+    /// Gets the web client script. Anonymous, because it loads before login.
+    /// </summary>
+    /// <returns>The JavaScript file.</returns>
+    [HttpGet("client.js")]
+    [AllowAnonymous]
+    [Produces("application/javascript")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult GetClientScript()
+    {
+        var stream = GetType().Assembly.GetManifestResourceStream(typeof(Plugin).Namespace + ".Web.client.js");
+        if (stream is null)
+        {
+            return NotFound();
+        }
+
+        Response.Headers.CacheControl = "no-cache";
+        return File(stream, "application/javascript");
     }
 
     /// <summary>
@@ -85,9 +105,9 @@ public class ThemeSwitcherController : ControllerBase
         return Ok(themes);
     }
 
-    private string ReadBaseCss()
+    private string ReadResource(string name)
     {
-        using var stream = GetType().Assembly.GetManifestResourceStream(typeof(Plugin).Namespace + ".Web.base.css");
+        using var stream = GetType().Assembly.GetManifestResourceStream(typeof(Plugin).Namespace + ".Web." + name);
         if (stream is null)
         {
             return string.Empty;

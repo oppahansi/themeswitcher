@@ -11,6 +11,7 @@ A Jellyfin plugin that re-skins the web client. Pick a theme in the dashboard in
   - Dark: Aurora Slate, Cinema Noir, Deep Ocean, Ember, Forest Cabin, Midnight (OLED black), Neon Arcade, Sakura Night, Terminal Phosphor
   - Light: Glacier, Paper, Terracotta Paper
   - **Kaleidochromic**: a recreation of [CTalvio's skin](https://github.com/CTalvio/Kaleidochromic) with blurred backdrops, glass surfaces, the tinted play button and Quicksand. It is built from screenshots and a description, not from the original CSS, and isn't affiliated with it.
+- **Random blurred background** (optional): pages without a backdrop of their own, like home, libraries, settings and the dashboard, get a random one from your library, picked again on every page change and reload. Item pages keep their own artwork. Blur and dimming come from the theme.
 - **Accent color override** with a live swatch preview.
 - **Custom CSS** appended after the theme for small tweaks.
 - Applies to everyone on the server, including the login page.
@@ -27,7 +28,7 @@ Native apps (Swiftfin, Findroid, Android TV) don't use the web client's CSS and 
 
 ## How the theme gets into the web client
 
-The plugin adds a `<link>` to its generated stylesheet (`/ThemeSwitcher/theme.css`) in jellyfin-web's `index.html`. On every server start it does one of two things:
+The plugin adds a `<link>` to its generated stylesheet (`/ThemeSwitcher/theme.css`) and a small script (`/ThemeSwitcher/client.js`, only used for the random background) to jellyfin-web's `index.html`. On every server start it does one of two things:
 
 1. **With the [File Transformation](https://github.com/IAmParadox27/jellyfin-plugin-file-transformation) plugin installed (recommended):** the tag is added in memory as `index.html` is served. No files change on disk.
 2. **Without it:** the plugin writes the tag into `index.html` in Jellyfin's web directory. This needs write access; it isn't writable in some Docker images (for example linuxserver.io). The log then says so.
@@ -54,6 +55,11 @@ Extract the zip for your Jellyfin version from [Releases](https://github.com/opp
 GET /ThemeSwitcher/theme.css
 ```
 The generated stylesheet. No authentication, because it loads before login.
+
+```
+GET /ThemeSwitcher/client.js
+```
+The web client script. No authentication, because it loads before login.
 
 ```
 GET /ThemeSwitcher/fonts/{file}.woff2

@@ -56,8 +56,9 @@ public static partial class ThemeCatalog
     /// <param name="accentOverride">An optional #rrggbb accent.</param>
     /// <param name="customCss">CSS appended at the end.</param>
     /// <param name="baseCss">The shared stylesheet that uses the variables.</param>
+    /// <param name="randomBackground">Whether the client script should add a random backdrop to pages without one.</param>
     /// <returns>The CSS.</returns>
-    public static string Build(string themeId, string? accentOverride, string? customCss, string baseCss)
+    public static string Build(string themeId, string? accentOverride, string? customCss, string baseCss, bool randomBackground = false)
     {
         var css = new StringBuilder();
         var theme = All.FirstOrDefault(t => string.Equals(t.Id, themeId, StringComparison.OrdinalIgnoreCase));
@@ -86,6 +87,12 @@ public static partial class ThemeCatalog
             }
 
             css.Append("}\n");
+
+            // The client script reads this variable, so the setting needs no endpoint of its own.
+            if (randomBackground)
+            {
+                css.Append(":root{--ts-random-bg:1}\n");
+            }
         }
 
         if (!string.IsNullOrWhiteSpace(customCss))
