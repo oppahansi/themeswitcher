@@ -76,7 +76,7 @@ Optional variables for effects (all off unless set):
     --ts-backdrop-blur: 30px;  /* blur of the full-page item backdrop */
     --ts-backdrop-scale: 1.1;  /* zoom that hides the blurred edges */
     --ts-backdrop-dim: 0.9;    /* dimming layer above the backdrop, higher is darker (default 0.86) */
-    --ts-glass: rgba(0, 0, 0, 0.35); /* dialogs, drawer, toasts, bottom bar */
+    --ts-glass: rgba(0, 0, 0, 0.35); /* dialogs, menus, toasts, bottom bar, drawer */
     --ts-glass-blur: 15px;
     --ts-header-blur: 8px;     /* with --ts-header: transparent */
 ```

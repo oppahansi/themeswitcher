@@ -84,19 +84,36 @@ body :not(.material-icons):not(.textarea-mono) {
     opacity: var(--ts-backdrop-dim, 0.86);
 }
 
-/* jellyfin-web forces backdrop-filter: none on the translucent header, so this needs the extra specificity */
+/*
+ * Top bar. The modern layout (default) uses an MUI AppBar, the legacy layout .skinHeader. The legacy one has
+ * backdrop-filter: none !important, so that needs the extra specificity. MUI adds a lighter overlay image to
+ * raised dark surfaces, which would tint a transparent bar, so it is removed.
+ */
 html .skinHeader,
-html .skinHeader.semiTransparent {
+html .skinHeader.semiTransparent,
+html .MuiAppBar-root {
     backdrop-filter: blur(var(--ts-header-blur, 0px)) !important;
 }
 
+.MuiAppBar-root {
+    background-image: none !important;
+}
+
+/*
+ * Floating surfaces. There is no permanent sidebar on user pages in 12.x: the drawer is MUI and only shows on small
+ * screens (and permanently in the dashboard). .mainDrawer is the legacy layout's drawer.
+ */
 .dialog,
 .formDialog,
 .actionSheetContent,
 .mainDrawer,
 .toast,
-.appfooter {
+.appfooter,
+.MuiDrawer-paper,
+.MuiDialog-paper,
+.MuiPopover-paper {
     background-color: var(--ts-glass, var(--ts-surface)) !important;
+    background-image: none !important;
     backdrop-filter: blur(var(--ts-glass-blur, 0px));
 }
 
@@ -107,7 +124,10 @@ html .skinHeader.semiTransparent {
     .actionSheetContent,
     .mainDrawer,
     .toast,
-    .appfooter {
+    .appfooter,
+    .MuiDrawer-paper,
+    .MuiDialog-paper,
+    .MuiPopover-paper {
         background-color: var(--ts-surface) !important;
     }
 }
