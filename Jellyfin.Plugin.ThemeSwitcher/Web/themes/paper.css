@@ -1,7 +1,7 @@
 /* @name Paper (light) */
 /* @scheme light */
 :root {
-    color-scheme: light;
+    --ts-scheme: light;
     --ts-bg: #f4f4f0;
     --ts-header: #ffffff;
     --ts-surface: #ffffff;

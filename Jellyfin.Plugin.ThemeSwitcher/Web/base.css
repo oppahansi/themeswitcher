@@ -1,170 +1,128 @@
-/* Shared rules. A theme file only sets the --ts-* variables (and may add its own rules after this). */
+/*
+ * Shared rules. A theme file only sets the --ts-* variables (and may add its own rules after this).
+ *
+ * jellyfin-web 12.x themes itself through --jf-palette-* variables on <html data-theme="...">, so the first
+ * block maps our variables onto those. html[data-theme] is more specific than the web client's own
+ * [data-theme="..."] and :root rules, so this wins whichever of them loads last. The rest of this file covers
+ * the few places the web client still hard-codes colors (sliders, toggles, spinners, legacy surfaces).
+ * The *Channel variables (space separated "r g b") are appended by the plugin, see ThemeCatalog.Build.
+ */
+
+html[data-theme] {
+    color-scheme: var(--ts-scheme, dark);
+
+    --jf-palette-background-default: var(--ts-bg);
+    --jf-palette-background-paper: var(--ts-surface);
+    --jf-palette-text-primary: var(--ts-text);
+    --jf-palette-text-secondary: var(--ts-text-muted);
+    --jf-palette-divider: var(--ts-border);
+
+    --jf-palette-primary-main: var(--ts-accent);
+    --jf-palette-primary-light: color-mix(in srgb, var(--ts-accent) 80%, white);
+    --jf-palette-primary-dark: color-mix(in srgb, var(--ts-accent) 75%, black);
+    --jf-palette-primary-contrastText: var(--ts-accent-text, #fff);
+    --jf-palette-secondary-main: var(--ts-accent);
+    --jf-palette-secondary-contrastText: var(--ts-accent-text, #fff);
+
+    --jf-palette-AppBar-defaultBg: var(--ts-header);
+    --jf-palette-AppBar-transparentBg: color-mix(in srgb, var(--ts-header) 70%, transparent);
+    --jf-palette-FilledInput-bg: color-mix(in srgb, var(--ts-text) 9%, transparent);
+    --jf-palette-FilledInput-borderColor: color-mix(in srgb, var(--ts-text) 9%, transparent);
+    --jf-palette-action-hover: color-mix(in srgb, var(--ts-text) 8%, transparent);
+    --jf-palette-action-focus: color-mix(in srgb, var(--ts-text) 12%, transparent);
+    --jf-palette-Button-inheritContainedBg: color-mix(in srgb, var(--ts-surface) 82%, var(--ts-text));
+    --jf-palette-Button-inheritContainedHoverBg: color-mix(in srgb, var(--ts-surface) 70%, var(--ts-text));
+    --jf-palette-SnackbarContent-bg: var(--ts-surface);
+    --jf-palette-SnackbarContent-color: var(--ts-text);
+
+    --jf-card-borderRadius: var(--ts-radius, 0.2em);
+}
 
 html,
 body {
     font-family: var(--ts-font, inherit);
 }
 
-html,
-body,
-.backgroundContainer,
-.mainAnimatedPage {
-    background-color: var(--ts-bg) !important;
-    color: var(--ts-text);
-}
-
-/* Top bar, side drawer, bottom player bar */
-.skinHeader,
-.skinHeader.semiTransparent,
-.mainDrawer,
-.nowPlayingBar,
-.appfooter,
-.libraryPage .pageTabsContainer {
-    background-color: var(--ts-header) !important;
-    color: var(--ts-text);
-    border-color: var(--ts-border);
-}
-
-/* Text */
-.sectionTitle,
-.cardText,
-.listItemBodyText,
-.itemName,
-.detailSectionHeader,
-h1, h2, h3, h4, h5 {
-    color: var(--ts-text) !important;
-}
-
-.cardText-secondary,
-.secondary,
-.listItemBodyText-secondary,
-.fieldDescription,
-.mediaInfoItem,
-.emby-tab-button,
-.navMenuOption {
-    color: var(--ts-text-muted) !important;
-}
-
-a,
-.button-link {
-    color: var(--ts-accent);
-}
-
-/* Cards, lists, dialogs, menus */
-.cardBox,
-.cardScalable,
-.cardPadder,
-.listItem-border,
+/* Surfaces the web client colors with a compiled-in value instead of a variable */
 .paperList,
-.formDialog,
-.dialog,
-.actionSheetContent,
-.actionSheetMenuItem,
-.detailPagePrimaryContainer,
-.MuiPaper-root,
-.MuiDrawer-paper {
+.visualCardBox,
+.cardBox:not(.visualCardBox) .cardPadder,
+.collapseContent,
+.formDialogFooter:not(.formDialogFooter-clear),
+.formDialogHeader:not(.formDialogHeader-clear) {
     background-color: var(--ts-surface) !important;
+}
+
+.cardPadder .cardImageIcon {
+    color: var(--ts-surface) !important;
+}
+
+.detailRibbon {
+    background: color-mix(in srgb, var(--ts-header) 80%, transparent) !important;
     color: var(--ts-text) !important;
 }
 
-.cardImageContainer,
-.cardBox,
-.formDialog,
 .dialog,
-.actionSheetContent,
-.emby-input,
-.emby-select,
-.emby-textarea,
-.emby-button.raised {
+.formDialog,
+.actionSheetContent {
+    background-color: var(--ts-surface) !important;
+    color: var(--ts-text);
     border-radius: var(--ts-radius, 0.2em);
 }
 
-.actionSheetMenuItem:hover,
-.listItem:hover,
-.navMenuOption:hover,
-.MuiListItemButton-root:hover {
-    background-color: color-mix(in srgb, var(--ts-accent) 18%, var(--ts-surface)) !important;
-}
-
-.navMenuOption-selected,
-.MuiListItemButton-root.Mui-selected {
-    background-color: color-mix(in srgb, var(--ts-accent) 28%, var(--ts-header)) !important;
-    color: var(--ts-text) !important;
-}
-
-/* Inputs */
 .emby-input,
 .emby-textarea,
-.emby-select,
-.emby-select-withcolor,
-.MuiInputBase-root {
-    background-color: var(--ts-surface) !important;
-    color: var(--ts-text) !important;
-    border-color: var(--ts-border) !important;
+.emby-select {
+    border-radius: var(--ts-radius, 0.2em);
 }
 
-.emby-input:focus,
-.emby-textarea:focus,
-.emby-select:focus {
-    border-color: var(--ts-accent) !important;
-}
-
-.inputLabel,
-.selectLabel,
-.textareaLabel {
-    color: var(--ts-text-muted) !important;
-}
-
-.inputLabelFocused,
-.selectLabelFocused,
-.textareaLabelFocused {
-    color: var(--ts-accent) !important;
-}
-
-/* Accent: primary buttons, progress, tabs, toggles, checkboxes */
+.emby-button.raised,
 .button-submit,
-.emby-button.button-submit,
-.raised.button-submit,
-.MuiButton-containedPrimary {
-    background-color: var(--ts-accent) !important;
-    color: var(--ts-accent-text, #fff) !important;
+.button-delete {
+    border-radius: var(--ts-radius, 0.2em);
 }
 
-.itemProgressBarForeground,
-.mdl-slider-fill,
-.mdl-slider::-webkit-slider-thumb,
-.mdl-slider::-moz-range-thumb,
-.mdl-switch.is-checked .mdl-switch__thumb,
-.emby-checkbox:checked + span + .checkboxOutline,
-.MuiLinearProgress-bar {
-    background-color: var(--ts-accent) !important;
-}
-
-.emby-tab-button-active,
-.emby-tab-button.emby-button-foreground.emby-tab-button-active {
+/* Accent colors the web client hard-codes as #00a4dc */
+.mdl-slider {
     color: var(--ts-accent) !important;
-    border-bottom-color: var(--ts-accent) !important;
 }
 
-.mdl-switch.is-checked .mdl-switch__track {
-    background-color: color-mix(in srgb, var(--ts-accent) 50%, transparent) !important;
+.mdl-slider::-webkit-slider-thumb,
+.mdl-slider-background-lower,
+.iconOsdProgressInner,
+.listItemIcon:not(.listItemIcon-transparent),
+.playbackProgress > div,
+progress::-webkit-progress-value {
+    background: var(--ts-accent) !important;
 }
 
-.emby-checkbox:checked + span + .checkboxOutline {
+.mdl-slider::-moz-range-thumb,
+progress::-moz-progress-bar {
+    background: var(--ts-accent) !important;
+}
+
+.mdl-switch__input:checked + .mdl-switch__label + .mdl-switch__trackContainer > .mdl-switch__thumb {
+    background: var(--ts-accent) !important;
+}
+
+.mdl-switch__input:checked + .mdl-switch__label + .mdl-switch__trackContainer > .mdl-switch__track {
+    background: color-mix(in srgb, var(--ts-accent) 50%, transparent) !important;
+}
+
+.mdl-spinner__layer-1,
+.mdl-spinner__layer-2,
+.mdl-spinner__layer-3,
+.mdl-spinner__layer-4 {
     border-color: var(--ts-accent) !important;
 }
 
-.paper-icon-button-light:hover,
-.paper-icon-button-light:focus {
+.button-accent-flat {
     color: var(--ts-accent) !important;
 }
 
-/* Dividers and outlines */
-.listItem-border,
-.formDialogHeader,
-.formDialogFooter,
-hr {
-    border-color: var(--ts-border) !important;
+.listItemImageButton:hover {
+    color: var(--ts-accent) !important;
+    background: color-mix(in srgb, var(--ts-accent) 20%, transparent) !important;
 }
 
 * {

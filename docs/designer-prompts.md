@@ -34,7 +34,7 @@ D. The final result as one CSS block in exactly this format (replace the values,
 /* @name <Display name> */
 /* @scheme dark */           <- or light
 :root {
-    color-scheme: dark;       /* or light */
+    --ts-scheme: dark;        /* or light */
     --ts-bg: #......;
     --ts-header: #......;
     --ts-surface: #......;

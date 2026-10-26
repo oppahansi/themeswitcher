@@ -64,11 +64,28 @@ public static partial class ThemeCatalog
 
         if (theme is not null)
         {
+            var accent = IsHexColor(accentOverride) ? accentOverride! : theme.Accent;
             css.Append(baseCss).Append('\n').Append(theme.Css).Append('\n');
+
+            // The accent override has to be set where the theme's own value is read.
             if (IsHexColor(accentOverride))
             {
-                css.Append(":root{--ts-accent:").Append(accentOverride).Append(";--ts-accent-text:").Append(ReadableOn(accentOverride!)).Append("}\n");
+                css.Append(":root{--ts-accent:").Append(accent).Append(";--ts-accent-text:").Append(ReadableOn(accent)).Append("}\n");
             }
+
+            // jellyfin-web builds translucent colors from "r g b" channel triplets, which CSS can't derive from a hex variable.
+            css.Append("html[data-theme]{");
+            if (TryChannels(theme.Surface, out var surface))
+            {
+                css.Append("--jf-palette-background-paperChannel:").Append(surface).Append(';');
+            }
+
+            if (TryChannels(accent, out var accentChannels))
+            {
+                css.Append("--jf-palette-primary-mainChannel:").Append(accentChannels).Append(';');
+            }
+
+            css.Append("}\n");
         }
 
         if (!string.IsNullOrWhiteSpace(customCss))
@@ -122,6 +139,19 @@ public static partial class ThemeCatalog
         return match.Success ? match.Groups[1].Value.Trim() : "#808080";
     }
 
+    private static bool TryChannels(string color, out string channels)
+    {
+        channels = string.Empty;
+        if (!IsHexColor(color))
+        {
+            return false;
+        }
+
+        int Part(int offset) => int.Parse(color.AsSpan(offset, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+        channels = string.Create(CultureInfo.InvariantCulture, $"{Part(1)} {Part(3)} {Part(5)}");
+        return true;
+    }
+
     // Black or white, whichever is easier to read on top of the given #rrggbb color (WCAG relative luminance).
     private static string ReadableOn(string hex)
     {
@@ -132,7 +162,7 @@ public static partial class ThemeCatalog
         }
 
         var luminance = (0.2126 * Channel(1)) + (0.7152 * Channel(3)) + (0.0722 * Channel(5));
-        return luminance > 0.4 ? "#000000" : "#ffffff";
+        return luminance > 0.179 ? "#000000" : "#ffffff";
     }
 
     [GeneratedRegex("^#[0-9a-fA-F]{6}$")]

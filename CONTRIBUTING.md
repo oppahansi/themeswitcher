@@ -55,7 +55,7 @@ Create `Jellyfin.Plugin.ThemeSwitcher/Web/themes/<id>.css` (lowercase, dashes) a
 /* @name Nord */
 /* @scheme dark */
 :root {
-    color-scheme: dark;
+    --ts-scheme: dark;
     --ts-bg: #2e3440;          /* page background */
     --ts-header: #3b4252;      /* top bar, side drawer, player bar */
     --ts-surface: #434c5e;     /* cards, dialogs, inputs, menus */
@@ -69,7 +69,7 @@ Create `Jellyfin.Plugin.ThemeSwitcher/Web/themes/<id>.css` (lowercase, dashes) a
 }
 ```
 
-`@name` and `@scheme` (`dark` or `light`) are required. A theme may add its own rules below the variables (they load after `base.css`), but prefer variables so the accent override keeps working. If a new jellyfin-web version breaks a selector, `Web/base.css` is the place to look.
+`@name` and `@scheme` (`dark` or `light`) are required. A theme may add its own rules below the variables (they load after `base.css`), but prefer variables so the accent override keeps working. `Web/base.css` maps the variables onto jellyfin-web's own `--jf-palette-*` theme variables (jellyfin-web 12.x) and patches the few places that hard-code colors. It was checked against jellyfin-web v12.3; if a new version looks off, compare with `src/themes/_base/_theme.scss` there.
 
 ## Pull requests
 

@@ -1,7 +1,7 @@
 /* @name Midnight (OLED black) */
 /* @scheme dark */
 :root {
-    color-scheme: dark;
+    --ts-scheme: dark;
     --ts-bg: #000000;
     --ts-header: #0a0a0a;
     --ts-surface: #151515;
