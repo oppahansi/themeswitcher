@@ -6,6 +6,9 @@
  * [data-theme="..."] and :root rules, so this wins whichever of them loads last. The rest of this file covers
  * the few places the web client still hard-codes colors (sliders, toggles, spinners, legacy surfaces).
  * The *Channel variables (space separated "r g b") are appended by the plugin, see ThemeCatalog.Build.
+ *
+ * jellyfin-web re-appends its own theme stylesheet to <head> at runtime, after the link to this file, so at equal
+ * specificity its rules win. Rules below therefore use !important or an extra "html" in the selector.
  */
 
 /* Bundled fonts (SIL OFL, see Web/fonts). Served by the plugin from ../fonts/, relative to /ThemeSwitcher/theme.css. */
@@ -80,8 +83,8 @@ body :not(.material-icons):not(.textarea-mono) {
     transform: scale(var(--ts-backdrop-scale, 1));
 }
 
-.backgroundContainer.withBackdrop {
-    opacity: var(--ts-backdrop-dim, 0.86);
+html .backgroundContainer.withBackdrop {
+    opacity: var(--ts-backdrop-dim, 0.86) !important;
 }
 
 /*
@@ -151,23 +154,22 @@ html .MuiAppBar-root {
     color: var(--ts-text) !important;
 }
 
-.dialog,
-.formDialog,
-.actionSheetContent {
+html .dialog,
+html .formDialog,
+html .actionSheetContent,
+html .emby-input,
+html .emby-textarea,
+html .emby-select,
+html .emby-button.raised,
+html .button-submit,
+html .button-delete {
+    border-radius: var(--ts-radius, 0.2em);
+}
+
+html .dialog,
+html .formDialog,
+html .actionSheetContent {
     color: var(--ts-text);
-    border-radius: var(--ts-radius, 0.2em);
-}
-
-.emby-input,
-.emby-textarea,
-.emby-select {
-    border-radius: var(--ts-radius, 0.2em);
-}
-
-.emby-button.raised,
-.button-submit,
-.button-delete {
-    border-radius: var(--ts-radius, 0.2em);
 }
 
 /* Accent colors the web client hard-codes as #00a4dc */
@@ -213,7 +215,7 @@ progress::-moz-progress-bar {
     background: color-mix(in srgb, var(--ts-accent) 20%, transparent) !important;
 }
 
-* {
+html * {
     scrollbar-color: var(--ts-border) var(--ts-bg);
 }
 

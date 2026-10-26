@@ -83,7 +83,7 @@ Optional variables for effects (all off unless set):
 
 Bundled fonts live in `Web/fonts/` and are served from `/ThemeSwitcher/fonts/`. Only Quicksand (SIL OFL 1.1, license next to it) so far. To add one, drop the `.woff2` files there, add `@font-face` rules to `Web/base.css` and keep the license file.
 
-`@name` and `@scheme` (`dark` or `light`) are required. A theme may add its own rules below the variables (they load after `base.css`), but prefer variables so the accent override keeps working. `Web/base.css` maps the variables onto jellyfin-web's own `--jf-palette-*` theme variables (jellyfin-web 12.x) and patches the few places that hard-code colors. It was checked against jellyfin-web v12.3; if a new version looks off, compare with `src/themes/_base/_theme.scss` there.
+`@name` and `@scheme` (`dark` or `light`) are required. A theme may add its own rules below the variables (they load after `base.css`, but jellyfin-web's own stylesheet loads after both, so use `!important` or prefix selectors with `html`), but prefer variables so the accent override keeps working. `Web/base.css` maps the variables onto jellyfin-web's own `--jf-palette-*` theme variables (jellyfin-web 12.x) and patches the few places that hard-code colors. It was checked against jellyfin-web v12.3; if a new version looks off, compare with `src/themes/_base/_theme.scss` there.
 
 ## Pull requests
 
