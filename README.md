@@ -5,6 +5,14 @@
 
 A Jellyfin plugin that re-skins the web client. Pick a theme in the dashboard instead of pasting CSS into **Custom CSS**.
 
+## Screenshots
+
+The Kaleidochromic theme with the random blurred background. Media artwork, titles and the server name are blurred in these screenshots.
+
+![Home screen with the Kaleidochromic theme](docs/kaleidochromic-home.png)
+
+![The Theme Switcher settings page](docs/settings.png)
+
 ## Features
 
 - **Themes bundled in the plugin**, no internet access needed:

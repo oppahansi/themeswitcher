@@ -24,6 +24,7 @@ PLUGIN = {
     "overview": "Re-skin the Jellyfin web UI from the dashboard",
     "owner": "oppahansi",
     "category": "General",
+    "imageUrl": f"https://raw.githubusercontent.com/{REPO}/main/docs/kaleidochromic-home.png",
 }
 
 
