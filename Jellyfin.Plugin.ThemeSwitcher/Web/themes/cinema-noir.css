@@ -1,0 +1,15 @@
+/* @name Cinema Noir */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #16120f;
+    --ts-header: #1d1814;
+    --ts-surface: #27211c;
+    --ts-text: #efe6d8;
+    --ts-text-muted: #b3a796;
+    --ts-border: #3e352c;
+    --ts-accent: #c9a45c;
+    --ts-accent-text: #1a140c;
+    --ts-radius: 0.15em;
+    --ts-font: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+}

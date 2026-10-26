@@ -7,7 +7,10 @@ A Jellyfin plugin that re-skins the web client. Pick a theme in the dashboard in
 
 ## Features
 
-- **Themes bundled in the plugin**, no internet access needed. List: see [`Web/themes`](Jellyfin.Plugin.ThemeSwitcher/Web/themes).
+- **Themes bundled in the plugin**, no internet access needed:
+  - Dark: Aurora Slate, Cinema Noir, Deep Ocean, Ember, Forest Cabin, Midnight (OLED black), Neon Arcade, Sakura Night, Terminal Phosphor
+  - Light: Glacier, Paper, Terracotta Paper
+  - **Kaleidochromic**: a recreation of [CTalvio's skin](https://github.com/CTalvio/Kaleidochromic) with blurred backdrops, glass surfaces, the tinted play button and Quicksand. It is built from screenshots and a description, not from the original CSS, and isn't affiliated with it.
 - **Accent color override** with a live swatch preview.
 - **Custom CSS** appended after the theme for small tweaks.
 - Applies to everyone on the server, including the login page.

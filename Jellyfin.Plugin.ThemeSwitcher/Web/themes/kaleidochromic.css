@@ -1,0 +1,106 @@
+/* @name Kaleidochromic */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #080808;
+    --ts-header: transparent;
+    --ts-surface: #18181c;
+    --ts-text: #ffffff;
+    --ts-text-muted: #b5b5b5;
+    --ts-border: #262626;
+    --ts-accent: #6279cd;
+    --ts-accent-text: #080808;
+    --ts-radius: 0.75em;
+    --ts-font: "Quicksand", "Noto Sans", sans-serif;
+
+    --ts-backdrop-blur: 20px;
+    --ts-backdrop-scale: 1.1;
+    --ts-backdrop-dim: 0.75;
+    --ts-glass: rgba(0, 0, 0, 0.35);
+    --ts-glass-blur: 15px;
+    --ts-header-blur: 0px;
+}
+
+/*
+ * Extras the variables can't express (values from the design). jellyfin-web's own stylesheet loads after this one,
+ * so selectors carry an extra "html" to win.
+ */
+
+/* Primary buttons are a soft accent tint with an accent label, not a solid fill */
+html .button-submit,
+html .btnPlay {
+    background: color-mix(in srgb, var(--ts-accent) 20%, transparent) !important;
+    color: var(--ts-accent) !important;
+}
+
+html .button-submit:hover,
+html .btnPlay:hover {
+    background: color-mix(in srgb, var(--ts-accent) 30%, transparent) !important;
+}
+
+html .button-submit:active,
+html .btnPlay:active {
+    background: color-mix(in srgb, var(--ts-accent) 40%, transparent) !important;
+}
+
+/* Neutral buttons and pill dropdowns */
+html .emby-button.raised:not(.button-submit):not(.btnPlay),
+html .emby-select-withcolor {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--ts-radius);
+}
+
+/* Focused poster or card */
+html .card:focus .cardBox:not(.visualCardBox) .cardScalable,
+html .card:focus .cardBox.visualCardBox {
+    outline: 3px solid var(--ts-accent);
+    outline-offset: 2px;
+    border-color: transparent !important;
+}
+
+/* Section titles are light and slightly larger */
+html .sectionTitle,
+html .sectionTitle-cards {
+    font-weight: 300 !important;
+    font-size: 1.35em !important;
+}
+
+/* Top bar turns to glass once the page has scrolled (it is clear at the top) */
+html .MuiAppBar-colorDefault {
+    background-color: var(--ts-glass) !important;
+    backdrop-filter: blur(var(--ts-glass-blur)) !important;
+    transition: background-color 0.3s ease;
+}
+
+/* Thin progress bar inset into the thumbnail's bottom edge. The bar sits in a clipped 4px footer, so the footer moves. */
+html .innerCardFooter:has(> .itemProgressBar) {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    border-radius: 100px;
+}
+
+html .itemProgressBar {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 100px;
+}
+
+/*
+ * Item page, the simple variant of the original skin: a sharp banner at the top, the plain text title instead of the
+ * series logo, and a blurred, tinted wash below the banner. In jellyfin-web the banner is the page backdrop showing
+ * through a gap above the content panel, so the backdrop stays sharp here and the panel blurs what is behind it.
+ */
+html .detailLogo {
+    display: none !important;
+}
+
+html:has(.selfBackdropPage:not(.hide)) .backdropImage {
+    filter: none !important;
+    transform: none !important;
+}
+
+html .noBackdropTransparency .detailPageWrapperContainer {
+    background-color: rgba(8, 8, 8, 0.55) !important;
+    backdrop-filter: blur(var(--ts-backdrop-blur, 20px));
+}

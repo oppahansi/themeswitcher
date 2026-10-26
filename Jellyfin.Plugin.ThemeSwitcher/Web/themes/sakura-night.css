@@ -1,0 +1,15 @@
+/* @name Sakura Night */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #1a1219;
+    --ts-header: #211720;
+    --ts-surface: #2c1f2a;
+    --ts-text: #f3e4ea;
+    --ts-text-muted: #bca4b1;
+    --ts-border: #47343f;
+    --ts-accent: #f2a5c0;
+    --ts-accent-text: #2a0f1c;
+    --ts-radius: 0.8em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

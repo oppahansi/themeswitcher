@@ -1,0 +1,15 @@
+/* @name Terminal Phosphor */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #0b110d;
+    --ts-header: #0f1712;
+    --ts-surface: #142019;
+    --ts-text: #c8f2d2;
+    --ts-text-muted: #86b593;
+    --ts-border: #2f5a3d;
+    --ts-accent: #4ff27c;
+    --ts-accent-text: #04140a;
+    --ts-radius: 0;
+    --ts-font: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}

@@ -1,0 +1,15 @@
+/* @name Terracotta Paper */
+/* @scheme light */
+:root {
+    --ts-scheme: light;
+    --ts-bg: #f4ede1;
+    --ts-header: #ebe1d0;
+    --ts-surface: #fcf9f3;
+    --ts-text: #2a1f18;
+    --ts-text-muted: #6b5849;
+    --ts-border: #8f7b66;
+    --ts-accent: #b4461f;
+    --ts-accent-text: #fff8f0;
+    --ts-radius: 0.4em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

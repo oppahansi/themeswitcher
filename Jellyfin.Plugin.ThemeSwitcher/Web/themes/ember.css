@@ -1,0 +1,15 @@
+/* @name Ember */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #161413;
+    --ts-header: #1e1b19;
+    --ts-surface: #292523;
+    --ts-text: #f6f1ed;
+    --ts-text-muted: #b8aea6;
+    --ts-border: #4a423c;
+    --ts-accent: #ff5a28;
+    --ts-accent-text: #1c0904;
+    --ts-radius: 0.1em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

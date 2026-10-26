@@ -1,0 +1,15 @@
+/* @name Glacier */
+/* @scheme light */
+:root {
+    --ts-scheme: light;
+    --ts-bg: #eef2f6;
+    --ts-header: #d8e0ea;
+    --ts-surface: #fbfcfe;
+    --ts-text: #1b2633;
+    --ts-text-muted: #506075;
+    --ts-border: #a4b2c1;
+    --ts-accent: #2563c9;
+    --ts-accent-text: #f7faff;
+    --ts-radius: 0.5em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

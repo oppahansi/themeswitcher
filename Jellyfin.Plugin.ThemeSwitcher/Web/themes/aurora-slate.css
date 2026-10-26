@@ -1,0 +1,15 @@
+/* @name Aurora Slate */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #141a21;
+    --ts-header: #1a222b;
+    --ts-surface: #232d38;
+    --ts-text: #e6eef2;
+    --ts-text-muted: #9eafbc;
+    --ts-border: #364452;
+    --ts-accent: #5ccfcb;
+    --ts-accent-text: #0d1b1f;
+    --ts-radius: 0.5em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

@@ -1,0 +1,15 @@
+/* @name Forest Cabin */
+/* @scheme dark */
+:root {
+    --ts-scheme: dark;
+    --ts-bg: #121a16;
+    --ts-header: #18221d;
+    --ts-surface: #212d26;
+    --ts-text: #f1ead9;
+    --ts-text-muted: #a9b3a2;
+    --ts-border: #35443a;
+    --ts-accent: #e9a243;
+    --ts-accent-text: #1d1305;
+    --ts-radius: 0.75em;
+    --ts-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
