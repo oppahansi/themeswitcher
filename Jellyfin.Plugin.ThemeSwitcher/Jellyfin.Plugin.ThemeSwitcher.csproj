@@ -2,7 +2,7 @@
 
   <!--
     Build for a specific Jellyfin server version:
-      dotnet build -c Release -p:JellyfinVersion=10.10.7
+      dotnet build -c Release -p:JellyfinVersion=12.3.0
     The target framework follows from the Jellyfin version. See README.md.
   -->
   <PropertyGroup>
@@ -10,14 +10,12 @@
     <PluginVersion Condition="'$(PluginVersion)' == ''">1.0.0</PluginVersion>
     <_JellyfinMajor>$([System.Version]::Parse('$(JellyfinVersion)').Major)</_JellyfinMajor>
     <_JellyfinMinor>$([System.Version]::Parse('$(JellyfinVersion)').Minor)</_JellyfinMinor>
-    <!-- 4th version component encodes the Jellyfin line (10.11 -> 1011) so every build has a unique, ordered version. -->
+    <!-- 4th version component encodes the Jellyfin line (12.3 -> 1203) so every build has a unique, ordered version. -->
     <_AbiCode>$([MSBuild]::Add($([MSBuild]::Multiply($(_JellyfinMajor), 100)), $(_JellyfinMinor)))</_AbiCode>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework Condition="'$(_JellyfinMajor)' == '10' And $(_JellyfinMinor) &lt; 11">net8.0</TargetFramework>
-    <TargetFramework Condition="'$(_JellyfinMajor)' == '10' And $(_JellyfinMinor) &gt;= 11">net9.0</TargetFramework>
-    <TargetFramework Condition="$(_JellyfinMajor) &gt;= 12">net10.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>Jellyfin.Plugin.ThemeSwitcher</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>

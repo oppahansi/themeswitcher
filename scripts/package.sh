@@ -2,7 +2,7 @@
 # Builds the plugin for one Jellyfin version and packages it as an installable zip.
 #
 #   scripts/package.sh <jellyfin-version> [plugin-version]
-#   scripts/package.sh 10.10.7 1.0.0
+#   scripts/package.sh 12.3.0 1.0.0
 #
 # Output: dist/themeswitcher_<plugin-version>_jellyfin-<major.minor>.zip
 set -euo pipefail

@@ -6,7 +6,7 @@ body:
     id: jellyfin
     attributes:
       label: Jellyfin version
-      placeholder: "10.11.11"
+      placeholder: "12.3.0"
     validations:
       required: true
   - type: input

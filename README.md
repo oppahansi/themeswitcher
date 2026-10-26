@@ -18,17 +18,9 @@ Themes are plain CSS files that set a handful of color variables; adding one mea
 
 ## Compatibility
 
-| Jellyfin | .NET | Release tag |
-|---|---|---|
-| 12.3.x | 10 | `v<version>-jellyfin-12.3` |
-| 12.2.x | 10 | `v<version>-jellyfin-12.2` |
-| 12.1.x | 10 | `v<version>-jellyfin-12.1` |
-| 12.0.x | 10 | `v<version>-jellyfin-12.0` |
-| 10.11.x | 9 | `v<version>-jellyfin-10.11` |
-| 10.10.x | 8 | `v<version>-jellyfin-10.10` |
-| 10.9.x | 8 | `v<version>-jellyfin-10.9` |
+Jellyfin **12.3** only (.NET 10). The theme is applied through the `--jf-palette-*` variables of the 12.x web client, so older servers aren't supported. Releases are tagged `v<version>-jellyfin-12.3`.
 
-Pick the release that matches your server's version. Native apps (Swiftfin, Findroid, Android TV) don't use the web client's CSS and stay unthemed.
+Native apps (Swiftfin, Findroid, Android TV) don't use the web client's CSS and stay unthemed.
 
 ## How the theme gets into the web client
 
@@ -68,7 +60,7 @@ The available themes (for the settings page). Needs a user session.
 ## Building
 
 ```sh
-dotnet build Jellyfin.Plugin.ThemeSwitcher -c Release -p:JellyfinVersion=10.10.7
+dotnet build Jellyfin.Plugin.ThemeSwitcher -c Release -p:JellyfinVersion=12.3.0
 ```
 
 `scripts/package.sh <jellyfin-version> [plugin-version]` builds and zips one Jellyfin version into `dist/`. Targets are listed in `targets.json`.

@@ -28,7 +28,7 @@ Also say whether the File Transformation plugin is installed, and include errors
    docker run --rm -p 8096:8096 \
      -v "$PWD/test-config:/config" \
      -v /path/to/some/media:/media:ro \
-     jellyfin/jellyfin:10.11.11
+     jellyfin/jellyfin:12.3.0
    ```
 
    Build with `-p:JellyfinVersion=<version>` that matches the server image. See [Building](README.md#building).
@@ -80,7 +80,6 @@ Create `Jellyfin.Plugin.ThemeSwitcher/Web/themes/<id>.css` (lowercase, dashes) a
   for v in $(jq -r '.[]' targets.json); do scripts/package.sh "$v"; done
   ```
 
-- If the Jellyfin API differs between versions, use the built-in target framework symbols (`#if NET9_0_OR_GREATER`, `#if NET10_0_OR_GREATER`) instead of dropping support for older versions.
 - Warnings are treated as errors. Match the existing code style; `.editorconfig` covers the basics.
 - Add an entry under `## [Unreleased]` in `CHANGELOG.md` for user-facing changes.
 - Don't edit `manifest.json` by hand. The release workflow maintains it.

@@ -90,11 +90,7 @@ public class InjectThemeTask : IScheduledTask, IConfigurableScheduledTask
         [
             new TaskTriggerInfo
             {
-#if NET9_0_OR_GREATER
                 Type = TaskTriggerInfoType.StartupTrigger
-#else
-                Type = TaskTriggerInfo.TriggerStartup
-#endif
             }
         ];
     }
