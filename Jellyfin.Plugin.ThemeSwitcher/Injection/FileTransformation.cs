@@ -12,7 +12,8 @@ namespace Jellyfin.Plugin.ThemeSwitcher.Injection;
 /// </summary>
 public static class FileTransformation
 {
-    private static readonly Guid TransformationId = Guid.Parse("8db3386c-36e2-4b1f-8b4e-5644122c5f15");
+    // Must be unique per plugin: File Transformation ignores a second registration with an id it already has.
+    private static readonly Guid TransformationId = Guid.Parse("0de577ec-f2e8-47c4-afaa-4c5bca9a4799");
 
     /// <summary>
     /// Registers the index.html transformation if File Transformation is installed.
