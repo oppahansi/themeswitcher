@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/oppahansi/themeswitcher/actions/workflows/build.yml/badge.svg)](https://github.com/oppahansi/themeswitcher/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=discord&message=Join&color=blue)](https://discord.gg/ncKmDEArqg)
 
 A Jellyfin plugin that re-skins the web client. Pick a theme in the dashboard instead of pasting CSS into **Custom CSS**.
 
