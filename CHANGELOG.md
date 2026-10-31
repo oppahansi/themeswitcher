@@ -6,6 +6,12 @@ and the project uses [semantic versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-10-31
+
+### Added
+
+- Builds for Jellyfin 12.4. Building without `-p:JellyfinVersion` now targets 12.4.
+
 ## [1.0.1] - 2026-10-31
 
 ### Fixed
@@ -25,6 +31,7 @@ and the project uses [semantic versioning](https://semver.org).
 - Optional theme variables for font, blurred item backdrop, glass surfaces and a blurred top bar.
 - Build for Jellyfin 12.3.
 
-[Unreleased]: https://github.com/oppahansi/themeswitcher/compare/v1.0.1-jellyfin-12.3...HEAD
+[Unreleased]: https://github.com/oppahansi/themeswitcher/compare/v1.0.2-jellyfin-12.4...HEAD
+[1.0.2]: https://github.com/oppahansi/themeswitcher/releases/tag/v1.0.2-jellyfin-12.4
 [1.0.1]: https://github.com/oppahansi/themeswitcher/releases/tag/v1.0.1-jellyfin-12.3
 [1.0.0]: https://github.com/oppahansi/themeswitcher/releases/tag/v1.0.0-jellyfin-12.3

@@ -30,7 +30,7 @@ Themes are plain CSS files that set a handful of color variables; adding one mea
 
 ## Compatibility
 
-Jellyfin **12.3** only (.NET 10). The theme is applied through the `--jf-palette-*` variables of the 12.x web client, so older servers aren't supported. Releases are tagged `v<version>-jellyfin-12.3`.
+Jellyfin **12.3** and **12.4** (.NET 10). The theme is applied through the `--jf-palette-*` variables of the 12.x web client, so older servers aren't supported. Releases are tagged `v<version>-jellyfin-12.3` and `v<version>-jellyfin-12.4`.
 
 Native apps (Swiftfin, Findroid, Android TV) don't use the web client's CSS and stay unthemed.
 
